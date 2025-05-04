@@ -2,11 +2,11 @@
 
 ![Teaser images](docs/teaser.png)
 
-While classifier-free guidance (CFG) is essential for conditional diffusion models, it doubles the number of neural function evaluations (NFEs) per inference step. To mitigate this inefficiency, we introduce adapter guidance distillation (AGD), a novel approach that simulates CFG in a single forward pass. AGD leverages lightweight adapters to approximate CFG, effectively doubling the sampling speed while maintaining or even improving sample quality. Unlike prior guidance distillation methods that tune the entire model, AGD keeps the base model frozen and only trains minimal additional parameters (∼2%) to significantly reduce the resource requirement of the distillation phase. Additionally, this approach preserves the original model weights and enables the adapters to be seamlessly combined with other checkpoints derived from the same base model. We also address a key mismatch between training and inference in existing guidance distillation methods by training on CFG-guided trajectories instead of standard diffusion trajectories. Through extensive experiments, we show that AGD achieves comparable or superior FID to CFG across multiple architectures with only half the NFEs. Notably, our method enables the distillation of large models (∼2.6B parameters) on a single consumer GPU with 24 GB of VRAM, making it more accessible than previous approaches that require multiple high-end GPUs.
-
-## Acknowledgement
-
-This codebase builds upon [the Diffusion Transformer repository](https://github.com/facebookresearch/DiT) and [the diffusers library](https://github.com/huggingface/diffusers).
+* Adapter Guidance Distillation (AGD) folds classifier-free guidance (CFG) into the model using adapters, so each diffusion step needs only one forward pass, effectively doubling inference speed, while in some cases slightly outperforming CFG.
+* The adapters are lightweight and only add 1–5% additional parameters, while keeping the base weights frozen. This also means that they can be disabled to return to the original CFG.
+* It is possible to distill CFG of Stable Diffusion XL (2.6B parameters) on a 24 GB VRAM consumer GPU.
+* AGD is composable with other methods, such as IP-Adapter and ControlNet.
+* No original datasets required—training is done only with samples from the base model.
 
 ## Usage
 
@@ -71,6 +71,10 @@ Stable Diffusion 2.1/XL:
 ```bash
 python -m agd.sd.calculate_metrics --dir /path/to/results --ref /path/to/ref_samples <...options>
 ```
+
+## Acknowledgement
+
+This codebase builds upon [the Diffusion Transformer repository](https://github.com/facebookresearch/DiT) and [the diffusers library](https://github.com/huggingface/diffusers).
 
 ## Citation
 
