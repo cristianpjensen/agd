@@ -1,0 +1,3 @@
+[submodule "agd/dit/DiT"]
+	path = agd/dit/DiT
+	url = https://github.com/facebookresearch/DiT
