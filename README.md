@@ -58,6 +58,12 @@ python -m agd.sd.sample --dir /path/to/results --prompt <prompt> <...options>
 
 ### Calculating metrics
 
+Diffusion Transformer:
 ```bash
-python -m agd.dit.calculate_metrics --dir /path/to/results
+python -m agd.dit.calculate_metrics --dir /path/to/results --ref /path/to/ref_samples <...options>
+```
+
+Stable Diffusion 2.1/XL:
+```bash
+python -m agd.sd.calculate_metrics --dir /path/to/results --ref /path/to/ref_samples <...options>
 ```
