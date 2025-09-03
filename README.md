@@ -1,4 +1,4 @@
-# Adapter Guidance Distillation ([📝 Paper](https://arxiv.org/abs/2503.07274))
+# Adapter Guidance Distillation
 
 ![Teaser images](docs/teaser.png)
 
@@ -75,14 +75,3 @@ python -m agd.sd.calculate_metrics --dir /path/to/results --ref /path/to/ref_sam
 ## Acknowledgement
 
 This codebase builds upon [the Diffusion Transformer repository](https://github.com/facebookresearch/DiT) and [the diffusers library](https://github.com/huggingface/diffusers).
-
-## Citation
-
-```bib
-@article{jensen2025efficient,
-  title={Efficient Distillation of Classifier-Free Guidance using Adapters},
-  author={Jensen, Cristian Perez and Sadat, Seyedmorteza},
-  journal={arXiv preprint arXiv:2503.07274},
-  year={2025}
-}
-```
